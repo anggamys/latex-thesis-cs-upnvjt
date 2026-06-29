@@ -12,7 +12,8 @@
 \usepackage{xcolor}
 \usepackage[ruled,vlined,linesnumbered]{algorithm2e}
 \usepackage[hidelinks]{hyperref}
-\usepackage{helvet}
+\usepackage{uarial}
+\pdfmapfile{+ua1.map}
 \usepackage{blindtext}
 \usepackage{csvsimple}
 \graphicspath{{figures/}}
@@ -46,24 +47,24 @@
   \renewcommand{\familydefault}{\sfdefault}\sffamily
   \thispagestyle{empty}
   \begin{flushleft}
-    \includegraphics[width=4cm]{figures/logo_upn.png}
+    \noindent\hspace*{-\dimexpr\oddsidemargin+0.2cm\relax}\includegraphics[width=4cm,height=4cm]{figures/logo_upn.png}
   \end{flushleft}
   \vspace{0.35cm}
   \noindent\hspace*{-\dimexpr\oddsidemargin+1in\relax}{\color{coverYellow}\rule{\paperwidth}{18pt}}
   \vspace{0.45cm}
   \begin{flushleft}{\large\bfseries \MakeUppercase{\DocTypeLabel}\par}\end{flushleft}
   \vspace{0.2cm}
-  \begin{flushleft}{\Large\bfseries \ThesisTitleUpper\par}\end{flushleft}
+  \begin{flushleft}{\fontsize{18}{22}\selectfont\bfseries \ThesisTitleUpper\par}\end{flushleft}
   \vspace{1.2cm}
   \begin{flushleft}
-    {\large\bfseries \StudentNameUpper\par}
-    {\large \NpmLabel\ \StudentID\par}
+    {\fontsize{14}{17}\selectfont\bfseries \StudentNameUpper\par}
+    {\fontsize{14}{17}\selectfont \NpmLabel\ \StudentID\par}
   \end{flushleft}
   \vspace{1.2cm}
   \begin{flushleft}
-    {\large\bfseries \AdvisorBlockLabel\par}
-    {\large \AdvisorOne\par}
-    {\large \AdvisorTwo\par}
+    {\fontsize{14}{17}\selectfont\bfseries \AdvisorBlockLabel\par}
+    {\fontsize{14}{17}\selectfont \AdvisorOne\par}
+    {\fontsize{14}{17}\selectfont \AdvisorTwo\par}
   \end{flushleft}
   \vspace{1.2cm}
   \begin{flushleft}
@@ -89,7 +90,7 @@
 \vspace{0.2cm}
 \begin{center}\bfseries \AgreeLabel\end{center}
 \vspace{0.2cm}
-\noindent\begin{tabular}{@{}p{0.67\linewidth} p{0.15\linewidth} p{0.25\linewidth}@{}}
+\noindent\begin{tabular}{@{}p{0.56\linewidth} p{0.12\linewidth} p{0.26\linewidth}@{}}
 \textbf{\underline{\AdvisorOne}} & \underline{\makebox[\linewidth]{\dotfill}} & \textbf{(\AdvisorOneRole)} \\
 \AdvisorOneID & & \\[0.5cm]
 \textbf{\underline{\AdvisorTwo}} & \underline{\makebox[\linewidth]{\dotfill}} & \textbf{(\AdvisorTwoRole)} \\
