@@ -15,8 +15,12 @@
 \usepackage{xcolor}
 \usepackage[ruled,vlined,linesnumbered]{algorithm2e}
 \usepackage[hidelinks]{hyperref}
-\usepackage{uarial}
-\pdfmapfile{+ua1.map}
+\IfFileExists{uarial.sty}{%
+  \usepackage{uarial}%
+  \pdfmapfile{+ua1.map}%
+}{%
+  \usepackage{helvet}%
+}
 \usepackage{blindtext}
 \usepackage{csvsimple}
 \graphicspath{{figures/}}
