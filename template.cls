@@ -25,13 +25,13 @@
     }%
 \fi
 
-% ── Page geometry (A4, top/bottom/right=2.5 cm, left=4.0 cm)
+% ── Page geometry (A4, atas=kiri=3cm, kanan=4cm, bawah=3cm)
 \RequirePackage[%
   a4paper,
-  top    = 2.5cm,
-  bottom = 2.5cm,
+  top    = 3.0cm,
+  bottom = 3.0cm,
   left   = 4.0cm,
-  right  = 2.5cm,
+  right  = 3.0cm,
   bindingoffset = 0pt,
   headheight    = 14pt,
   headsep       = 12pt,
@@ -83,7 +83,7 @@
 \renewcommand{\thetable}{\arabic{chapter}. \arabic{table}}
 
 \titleformat{\chapter}[display]
-  {\normalfont\normalsize\bfseries\centering}
+  {\normalfont\fontsize{14}{17}\selectfont\bfseries\centering}
   {BAB \thechapter}
   % {CHAPTER \thechapter}
   {0pt}
