@@ -1,5 +1,5 @@
 % main.tex -- Template Skripsi/Thesis Fasilkom UPN "Veteran" Jawa Timur
-% Compile: pdflatex -> bibtex -> pdflatex -> pdflatex
+% Compile: make (latexmk + bibtex otomatis)
 \documentclass{template}
 
 \usepackage{amsmath,amsfonts}
@@ -13,6 +13,8 @@
 \usepackage[ruled,vlined,linesnumbered]{algorithm2e}
 \usepackage[hidelinks]{hyperref}
 \usepackage{helvet}
+\usepackage{blindtext}
+\usepackage{csvsimple}
 \graphicspath{{figures/}}
 
 \makeatletter

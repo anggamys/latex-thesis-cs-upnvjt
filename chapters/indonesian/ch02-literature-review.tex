@@ -26,6 +26,18 @@ Tuliskan definisi, prinsip kerja, dan relevansi konsep terhadap penelitian. Guna
 \subsection{Konsep Utama Kedua}
 Tambahkan konsep lain sesuai kebutuhan. Jika menggunakan rumus, jelaskan arti setiap simbol dan alasan rumus tersebut digunakan.
 
+\subsection{Contoh Tabel dari Data CSV}
+Template dapat menampilkan tabel yang diisi dari berkas CSV. Simpan data di folder \texttt{figures/} atau \texttt{references/} lalu gunakan paket \texttt{csvsimple}.
+
+\begin{table}[H]
+\centering
+\caption{Contoh tabel dari data CSV}
+\label{tab:csv-example}
+\csvautotabular{references/example.csv}
+\end{table}
+
+Tabel~\ref{tab:csv-example} menampilkan contoh data dari berkas \texttt{references/example.csv}. Pastikan jumlah kolom di CSV sesuai dengan tampilan yang diinginkan.
+
 \section{Kerangka Pemikiran}
 \TemplateTodo{Jelaskan hubungan antara masalah, teori, metode, data, dan keluaran penelitian. Bagian ini dapat dibantu dengan gambar alur konseptual.}
 

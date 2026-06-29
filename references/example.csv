@@ -1,0 +1,5 @@
+Metrik,Nilai Sebelum,Nilai Sesudah
+Akurasi,0.852,0.934
+Presisi,0.831,0.917
+Recall,0.845,0.928
+F1-Score,0.838,0.922

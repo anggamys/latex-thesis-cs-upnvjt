@@ -1,0 +1,51 @@
+# GitHub Actions CI untuk Template LaTeX Skripsi/Thesis UPN Veteran Jatim
+#
+# - Push ke main/master   → build PDF + upload artifact
+# - Pull Request           → validate (chktex) + build PDF
+
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  validate:
+    name: Validate LaTeX
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install chktex
+        run: sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends chktex
+
+      - name: Validate source files
+        run: |
+          find . \( -name '*.tex' -o -name '*.cls' -o -name '*.sty' \) \
+            ! -path './build/*' ! -path './dist/*' ! -path './.git/*' \
+            -print0 | xargs -0 chktex -q --inputfiles || true
+
+  build:
+    name: Build PDF
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install TeX Live
+        run: sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends
+          texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended
+          texlive-bibtex-extra texlive-lang-other latexmk
+          texlive-fonts-extra
+
+      - name: Build with latexmk
+        run: make
+
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: thesis-pdf
+          path: dist/main.pdf

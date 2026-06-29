@@ -1,4 +1,4 @@
-% ── LaTeX build artifacts ────────────────────────────────────
+% ── LaTeX build artifacts (individual files) ──────────────────
 *.aux
 *.log
 *.toc
@@ -26,7 +26,11 @@
 *.alg
 *.gl
 
-% ── Build output PDFs ────────────────────────────────────────
+% ── Build directories (latexmk) ──────────────────────────────
+build/
+dist/
+
+% ── Build output PDFs (root, legacy) ─────────────────────────
 main.pdf
 template-preview-*.pdf
 

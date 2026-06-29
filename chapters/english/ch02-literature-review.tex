@@ -26,6 +26,18 @@ Write the definition, working principle, and relevance of the concept to the stu
 \subsection{Second Main Concept}
 Add other concepts as needed. If using formulas, explain the meaning of each symbol and why the formula is used.
 
+\subsection{Example Table from CSV Data}
+The template can display tables populated from CSV files. Store the data in the \texttt{figures/} or \texttt{references/} folder and use the \texttt{csvsimple} package.
+
+\begin{table}[H]
+\centering
+\caption{Example table from CSV data}
+\label{tab:csv-example}
+\csvautotabular{references/example.csv}
+\end{table}
+
+Table~\ref{tab:csv-example} shows sample data from the \texttt{references/example.csv} file. Make sure the CSV column count matches the desired layout.
+
 \section{Conceptual Framework}
 \TemplateTodo{Explain the relationship between the problem, theory, method, data, and research outputs. A conceptual diagram can help this section.}
 

@@ -194,10 +194,10 @@ Perintah `\Lang{...}{...}` tetap tersedia, tetapi sebaiknya hanya digunakan di f
 
 ## Cara compile
 
-Dari root project, jalankan:
+Template menggunakan **latexmk** yang secara otomatis mendeteksi jumlah kompilasi yang diperlukan dan menjalankan bibtex.
 
 ```bash
-make          # kompilasi penuh: pdflatex → bibtex → pdflatex → pdflatex
+make          # kompilasi penuh, hasil di dist/main.pdf
 ```
 
 Atau jika ingin menggunakan LuaLaTeX:
@@ -210,13 +210,15 @@ Target lain yang tersedia:
 
 | Perintah | Kegunaan |
 |----------|----------|
-| `make` / `make all` | Kompilasi penuh (4 langkah) |
-| `make once` | Satu kali pdflatex |
-| `make fast` | Kompilasi penuh tanpa output info |
+| `make` / `make all` | Kompilasi penuh dengan latexmk, output di `dist/` |
+| `make once` | Kompilasi tanpa bersih (untuk development cepat) |
 | `make view` | Buka PDF viewer |
-| `make clean` | Hapus artifact LaTeX, PDF dipertahankan |
-| `make distclean` | Hapus artifact + PDF |
-| `make rebuild` | `clean` + kompilasi ulang |
+| `make validate` | Periksa source LaTeX dengan chktex (linting) |
+| `make clean` | Hapus direktori `build/` (artifact sementara) |
+| `make distclean` | Hapus `build/` dan `dist/` |
+| `make rebuild` | `distclean` + kompilasi ulang |
+
+Hasil kompilasi: **`dist/main.pdf`**. File sementara latexmk disimpan di `build/` (keduanya diabaikan oleh git).
 
 Alur manual tanpa `make`:
 
@@ -297,6 +299,33 @@ Jika menambah file BibTeX baru, ubah bagian akhir `main.tex`:
 ```latex
 \bibliography{references/example,references/nama_file_baru}
 ```
+
+## Menambahkan tabel dari data CSV
+
+Template mendukung tabel yang diisi langsung dari berkas CSV menggunakan paket `csvsimple`. Simpan file CSV di folder `references/` atau `figures/`, lalu gunakan:
+
+```latex
+\begin{table}[H]
+\centering
+\caption{Judul tabel}
+\label{tab:csv-example}
+\csvautotabular{references/example.csv}
+\end{table}
+```
+
+Tabel dengan `\caption` otomatis masuk ke **Daftar Tabel**. Pastikan jumlah kolom di CSV sesuai dengan tampilan yang diinginkan. Contoh tersedia di `chapters/indonesian/ch02-literature-review.tex` dengan file `references/example.csv`.
+
+## Placeholder teks dengan blindtext
+
+Untuk mengisi sementara konten bab, template menyediakan perintah `\blindtext` (dari paket `blindtext`) yang menghasilkan paragraf placeholder berbahasa Latin. Gunakan saat masih dalam tahap pengembangan struktur dokumen:
+
+```latex
+\blindtext        % satu paragraf
+\blindtext[3]     % tiga paragraf
+\Blindtext        % beberapa paragraf dengan section
+```
+
+Ganti seluruh pemanggilan `\blindtext` dengan konten asli sebelum pengumpulan final.
 
 ## Menambahkan lampiran
 

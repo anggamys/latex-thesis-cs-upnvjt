@@ -1,86 +1,93 @@
 # Makefile untuk Template Skripsi/Thesis Fasilkom UPN "Veteran" Jawa Timur
-# Compile: make          → pdflatex + bibtex (full)
-#          make once     → sekali pdflatex
-#          make clean    → hapus artifact
-#          make distclean→ hapus artifact + PDF
-#          make rebuild  → clean + full compile
+#
+# Target:
+#   make / make all   → kompilasi penuh dengan latexmk
+#   make once         → sekali kompilasi (tanpa bersih)
+#   make validate     → periksa source LaTeX dengan chktex
+#   make clean        → hapus artifact build/
+#   make distclean    → hapus build/ dan dist/
+#   make rebuild      → distclean + all
+#
+# Pemakaian:
+#   make                   # pakai pdflatex
+#   make ENGINE=lualatex   # pakai lualatex
+#   make FAST=1            # mode cepat (tanpa bersih dulu)
 
-MAIN = main
-VIEWER = xdg-open
+MAIN     = main
+BUILD_DIR  = build
+DIST_DIR   = dist
+VIEWER     = xdg-open
 
-# ── Engine detection: pilih pdflatex (default) atau lualatex ──
+# ── Engine: pdflatex (default) atau lualatex ────────────────────
 ENGINE ?= pdflatex
-LATEX = $(ENGINE) -interaction=nonstopmode -file-line-error
-BIBTEX = bibtex
 
-# ── Full compilation (default) ──────────────────────────────────
+# ── latexmk ─────────────────────────────────────────────────────
+#   -pdf / -lualatex : engine
+#   -bibtex          : jalankan bibtex otomatis
+#   -outdir=…        : output ke direktori terpisah
+#   -cd              : cd ke direktori file dulu
+#   -f               : force hingga selesai (nonstop)
+#   -silent          : output lebih ringkas
+LATEXMK_OPTS = -f -silent -bibtex -outdir=$(BUILD_DIR) -cd
+
+ifeq ($(ENGINE),lualatex)
+  LATEXMK_OPTS += -lualatex
+else
+  LATEXMK_OPTS += -pdf
+endif
+
+# ── Build (default) ─────────────────────────────────────────────
 .PHONY: all
-all:
-	@echo "=== Compilasi ke-1: $(ENGINE) ==="
-	$(LATEX) $(MAIN).tex
-	@echo "=== Compilasi ke-2: $(BIBTEX) ==="
-	$(BIBTEX) $(MAIN)
-	@echo "=== Compilasi ke-3: $(ENGINE) ==="
-	$(LATEX) $(MAIN).tex
-	@echo "=== Compilasi ke-4: $(ENGINE) (final) ==="
-	$(LATEX) $(MAIN).tex
-	@echo "=== Selesai: $(MAIN).pdf telah dihasilkan ==="
+all: dist/$(MAIN).pdf
 
-# ── Single pass ─────────────────────────────────────────────────
+.PHONY: build
+build: dist/$(MAIN).pdf
+
+dist/$(MAIN).pdf: $(MAIN).tex FORCE
+	@mkdir -p $(BUILD_DIR) $(DIST_DIR)
+	latexmk $(LATEXMK_OPTS) $<
+	@cp $(BUILD_DIR)/$(MAIN).pdf $(DIST_DIR)/$(MAIN).pdf
+	@echo "✓ $(DIST_DIR)/$(MAIN).pdf telah dihasilkan"
+
+FORCE:
+
+# ── Single pass (tanpa bersih, untuk development cepat) ─────────
 .PHONY: once
 once:
-	$(LATEX) $(MAIN).tex
-
-# ── Fast (quiet) ─────────────────────────────────────────────────
-.PHONY: fast
-fast:
-	@$(LATEX) -quiet $(MAIN).tex
-	@$(BIBTEX) $(MAIN)
-	@$(LATEX) -quiet $(MAIN).tex
-	@$(LATEX) -quiet $(MAIN).tex
+	@mkdir -p $(BUILD_DIR)
+	latexmk $(LATEXMK_OPTS) $(MAIN).tex
+	@mkdir -p $(DIST_DIR)
+	@cp $(BUILD_DIR)/$(MAIN).pdf $(DIST_DIR)/$(MAIN).pdf
+	@echo "✓ $(DIST_DIR)/$(MAIN).pdf telah dihasilkan"
 
 # ── Buka PDF ────────────────────────────────────────────────────
 .PHONY: view
 view:
-	$(VIEWER) $(MAIN).pdf
+	$(VIEWER) $(DIST_DIR)/$(MAIN).pdf
 
-# ── Bersihkan artifact (pertahankan PDF) ─────────────────────────
+# ── Validasi LaTeX dengan chktex ────────────────────────────────
+.PHONY: validate
+validate:
+	@if command -v chktex >/dev/null 2>&1; then \
+	  find . \( -name '*.tex' -o -name '*.cls' -o -name '*.sty' \) \
+	    ! -path './build/*' ! -path './dist/*' \
+	    -print0 | xargs -0 chktex -q --inputfiles; \
+	else \
+	  echo "⚠ chktex tidak tersedia. Install dengan: sudo apt install chktex"; \
+	fi
+
+# ── Bersihkan build ─────────────────────────────────────────────
 .PHONY: clean
 clean:
-	@rm -f \
-	  $(MAIN).aux \
-	  $(MAIN).log \
-	  $(MAIN).toc \
-	  $(MAIN).lof \
-	  $(MAIN).lot \
-	  $(MAIN).loa \
-	  $(MAIN).out \
-	  $(MAIN).bbl \
-	  $(MAIN).blg \
-	  $(MAIN).brf \
-	  $(MAIN).bcf \
-	  $(MAIN).run.xml \
-	  $(MAIN).synctex.gz \
-	  $(MAIN).fls \
-	  $(MAIN).fdb_latexmk \
-	  $(MAIN).lol \
-	  $(MAIN).ist \
-	  $(MAIN).glg \
-	  $(MAIN).glo \
-	  $(MAIN).gls \
-	  $(MAIN).glsdefs \
-	  $(MAIN).acn \
-	  $(MAIN).acr \
-	  $(MAIN).alg \
-	  $(MAIN).gl
-	@echo "✓ Artifact LaTeX dibersihkan (PDF tidak dihapus)"
+	@rm -rf $(BUILD_DIR)
+	@echo "✓ $(BUILD_DIR)/ dihapus"
 
-# ── Bersihkan semua termasuk PDF ─────────────────────────────────
+# ── Bersihkan semua ─────────────────────────────────────────────
 .PHONY: distclean
 distclean: clean
-	@rm -f $(MAIN).pdf
-	@echo "✓ Semua file termasuk $(MAIN).pdf telah dihapus"
+	@rm -rf $(DIST_DIR)
+	@echo "✓ $(DIST_DIR)/ dihapus"
 
 # ── Compile ulang dari bersih ───────────────────────────────────
 .PHONY: rebuild
-rebuild: clean all
+rebuild: distclean all
