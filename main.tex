@@ -32,28 +32,7 @@
 \SetKwInput{KwInput}{\Lang{Masukan}{Input}}
 \SetKwInput{KwOutput}{\Lang{Keluaran}{Output}}
 \SetKw{KwReturn}{\Lang{Kembalikan}{Return}}
-
-% Source code: Courier 9pt, single-spaced, dengan line numbers.
-% Catatan: implementasi tabel 2 kolom (nomor baris | kode) masih belum sempurna.
-% Jika berhasil, update CHANGELOG.md dan README.md.
-\usepackage{courier}
-\lstset{
-  basicstyle=\ttfamily\fontsize{9}{11}\selectfont,
-  breaklines=true,
-  columns=fixed,
-  keywordstyle=\bfseries,
-  captionpos=b,
-  numbers=left,
-  numberstyle=\ttfamily\fontsize{9}{11}\selectfont,
-  stepnumber=1,
-  numbersep=5pt,
-  frame=none,
-  xleftmargin=0pt,
-  aboveskip=0pt,
-  belowskip=0pt,
-  resetmargins=true,
-  tabsize=2,
-}
+\lstset{basicstyle=\ttfamily\small,breaklines=true,frame=single,columns=fullflexible,keywordstyle=\bfseries,captionpos=b}
 
 % Template helper boxes. Remove all \TemplateTip and \TemplateTodo before final submission.
 \newcommand{\TemplateTip}[1]{\par\noindent\fbox{\begin{minipage}{0.94\linewidth}\textbf{\Lang{Tips penulisan:}{Writing tip:}} #1\end{minipage}}\par\vspace{0.4em}}
