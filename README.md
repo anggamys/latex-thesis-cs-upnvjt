@@ -1,6 +1,6 @@
 # Template LaTeX Skripsi/Thesis Fasilkom UPN "Veteran" Jawa Timur
 
-[![CI](https://github.com/kyrozepto/latex-thesis-cs-upnvjt/actions/workflows/ci.yml/badge.svg)](https://github.com/kyrozepto/latex-thesis-cs-upnvjt/actions/workflows/ci.yml)
+[![CI](https://github.com/anggamys/latex-thesis-cs-upnvjt/actions/workflows/ci.yml/badge.svg)](https://github.com/anggamys/latex-thesis-cs-upnvjt/actions/workflows/ci.yml)
 
 Template LaTeX untuk skripsi (undergraduate thesis) dan tesis (thesis) di **Program Studi Informatika, Fakultas Ilmu Komputer, Universitas Pembangunan Nasional "Veteran" Jawa Timur**.
 
@@ -30,16 +30,16 @@ Fokus utama: **mode bahasa yang mudah diganti**. Ubah satu variabel, semua label
 
 ## Fitur Utama / Main Features
 
-| Fitur | Keterangan |
-|-------|------------|
-| **Dual Language** | Ganti bahasa hanya dengan ubah 1 variabel (`indonesian` ↔ `english`) |
-| **Dual Document Type** | Pilih `skripsi` (Undergraduate Thesis) atau `tesis` (Thesis) |
+| Fitur                    | Keterangan                                                                   |
+| ------------------------ | ---------------------------------------------------------------------------- |
+| **Dual Language**        | Ganti bahasa hanya dengan ubah 1 variabel (`indonesian` ↔ `english`)         |
+| **Dual Document Type**   | Pilih `skripsi` (Undergraduate Thesis) atau `tesis` (Thesis)                 |
 | **Folder-based Content** | Tulis konten natural di folder bahasa masing-masing, tanpa `\Lang{...}{...}` |
-| **Centralized Config** | Metadata, label, dan pengaturan di satu tempat (`config/`) |
-| **Auto Labels** | BAB/CHAPTER, Daftar Isi/TOC, dll. berubah otomatis sesuai bahasa |
-| **Appendix Page** | Halaman khusus DAFTAR LAMPIRAN/LIST OF APPENDICES |
-| **CI Ready** | GitHub Actions build otomatis setiap push |
-| **Build with make** | `make` → latexmk handle semua pass + bibtex |
+| **Centralized Config**   | Metadata, label, dan pengaturan di satu tempat (`config/`)                   |
+| **Auto Labels**          | BAB/CHAPTER, Daftar Isi/TOC, dll. berubah otomatis sesuai bahasa             |
+| **Appendix Page**        | Halaman khusus DAFTAR LAMPIRAN/LIST OF APPENDICES                            |
+| **CI Ready**             | GitHub Actions build otomatis setiap push                                    |
+| **Build with make**      | `make` → latexmk handle semua pass + bibtex                                  |
 
 ---
 
@@ -58,6 +58,7 @@ sudo apt-get install -y texlive-latex-base texlive-latex-recommended texlive-lat
 **Windows (MiKTeX):** Install [MiKTeX](https://miktex.org/) dengan package `latexmk`.
 
 > Template otomatis mendeteksi engine dan font yang tersedia:
+>
 > - **pdfLaTeX**: `newtxtext` → fallback `times.sty`
 > - **LuaLaTeX/XeLaTeX**: Times New Roman → TeX Gyre Termes → Liberation Serif
 
@@ -102,10 +103,10 @@ Di file yang sama (`config/thesis-config.tex`):
 \newcommand{\ThesisDocumentType}{skripsi}   % skripsi atau tesis
 ```
 
-| Nilai | Indonesia | English |
-|-------|-----------|---------|
-| `skripsi` | Skripsi | Undergraduate Thesis |
-| `tesis` | Tesis | Thesis |
+| Nilai     | Indonesia | English              |
+| --------- | --------- | -------------------- |
+| `skripsi` | Skripsi   | Undergraduate Thesis |
+| `tesis`   | Tesis     | Thesis               |
 
 ---
 
@@ -273,6 +274,7 @@ Caption masuk ke **DAFTAR KODE** / **LIST OF CODE**.
 > dengan font Courier 9pt single spacing. Lihat `CHANGELOG.md` → Known Issues.
 
 Sementara gunakan `lstlisting` biasa:
+
 ```latex
 \begin{lstlisting}[caption=Judul kode,label=lst:contoh]
 def main():
@@ -340,13 +342,13 @@ Detail lampiran muncul di halaman **DAFTAR LAMPIRAN** / **LIST OF APPENDICES**, 
 
 ## Pemecahan Masalah / Troubleshooting
 
-| Masalah | Penyebab | Solusi |
-|---------|----------|--------|
-| `File 'xxx.sty' not found` | Package LaTeX kurang | Install package yang sesuai (lihat [Persyaratan Sistem](#persyaratan-sistem--system-requirements)) |
-| `Undefined reference` / `??` | Kompilasi ulang kurang | Jalankan `make rebuild` |
-| `Citation undefined` | bibtex belum jalan | Pastikan `make` (bukan `make once`) |
-| Font tidak sesuai | Engine tidak punya font yang diminta | Template sudah fallback otomatis, pastikan TeX Live lengkap |
-| `make: command not found` | `make` tidak terinstall | Install `build-essential` (Linux) atau Xcode CLI (macOS) |
+| Masalah                      | Penyebab                             | Solusi                                                                                             |
+| ---------------------------- | ------------------------------------ | -------------------------------------------------------------------------------------------------- |
+| `File 'xxx.sty' not found`   | Package LaTeX kurang                 | Install package yang sesuai (lihat [Persyaratan Sistem](#persyaratan-sistem--system-requirements)) |
+| `Undefined reference` / `??` | Kompilasi ulang kurang               | Jalankan `make rebuild`                                                                            |
+| `Citation undefined`         | bibtex belum jalan                   | Pastikan `make` (bukan `make once`)                                                                |
+| Font tidak sesuai            | Engine tidak punya font yang diminta | Template sudah fallback otomatis, pastikan TeX Live lengkap                                        |
+| `make: command not found`    | `make` tidak terinstall              | Install `build-essential` (Linux) atau Xcode CLI (macOS)                                           |
 
 ---
 
