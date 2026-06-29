@@ -38,7 +38,7 @@ jobs:
       - name: Install TeX Live
         run: sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends
           texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended
-          texlive-bibtex-extra texlive-lang-other latexmk
+          texlive-bibtex-extra texlive-science texlive-lang-other latexmk
           texlive-fonts-extra
 
       - name: Build with latexmk
