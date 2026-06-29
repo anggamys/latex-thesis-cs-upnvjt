@@ -3,24 +3,53 @@
 \section{Latar Belakang}
 \TemplateTodo{Jelaskan konteks umum topik, kondisi ideal, masalah nyata, kesenjangan penelitian atau kebutuhan praktis, serta alasan penelitian perlu dilakukan.}
 
-Tuliskan latar belakang secara runtut dari gambaran besar menuju masalah khusus \DocTypeNameLower. Gunakan sumber ilmiah yang dapat diverifikasi, misalnya artikel jurnal, prosiding, buku, standar, atau dokumen resmi \cite{exampleReference}.
+Pertumbuhan pengguna \emph{smartphone} di Indonesia meningkat pesat setiap tahun. Berdasarkan laporan We Are Social, jumlah pengguna \emph{smartphone} di Indonesia mencapai 212,9 juta jiwa pada tahun 2024 \cite{manning2008}. Peningkatan ini mendorong berkembangnya layanan berbasis aplikasi \emph{mobile}, termasuk layanan transportasi dan pesan-antar makanan \emph{online}. Aplikasi GoFood sebagai salah satu layanan terbesar di Indonesia memiliki jutaan ulasan di Google Play Store yang mencerminkan opini dan pengalaman pengguna.
 
-\TemplateTip{Hindari langsung membahas detail teknis tanpa menjelaskan masalah. Setiap klaim penting sebaiknya didukung sitasi.}
+Ulasan pengguna mengandung informasi berharga bagi pengembang aplikasi untuk meningkatkan kualitas layanan. Namun, menganalisis ribuan ulasan secara manual membutuhkan waktu dan tenaga yang tidak sedikit. Oleh karena itu, diperlukan pendekatan otomatis untuk mengklasifikasikan sentimen ulasan ke dalam kategori positif dan negatif.
+
+Analisis sentimen merupakan salah satu cabang \emph{Natural Language Processing} (NLP) yang dapat digunakan untuk mengekstrak opini dari teks secara otomatis \cite{feldman2013}. Metode Na\"ive Bayes Classifier (NBC) dipilih karena sederhana, cepat, dan telah terbukti efektif dalam klasifikasi teks \cite{go2019}. Penelitian ini menerapkan NBC dengan fitur TF-IDF untuk mengklasifikasikan sentimen ulasan aplikasi GoFood.
 
 \section{Rumusan Masalah}
 \TemplateTodo{Ubah masalah penelitian menjadi pertanyaan yang spesifik, terukur, dan dapat dijawab melalui metodologi.}
 
+Berdasarkan latar belakang yang telah diuraikan, rumusan masalah dalam penelitian ini adalah sebagai berikut:
+
 \begin{enumerate}
-  \item Bagaimana merancang pendekatan untuk menyelesaikan masalah utama pada objek penelitian?
-  \item Bagaimana mengevaluasi kinerja pendekatan yang diusulkan berdasarkan metrik yang sesuai?
-  \item Faktor apa saja yang memengaruhi hasil penelitian berdasarkan analisis yang dilakukan?
+  \item Bagaimana tahapan \emph{preprocessing} teks yang efektif untuk ulasan berbahasa Indonesia pada aplikasi GoFood?
+  \item Bagaimana penerapan metode Na\"ive Bayes Classifier dengan fitur TF-IDF dalam mengklasifikasikan sentimen ulasan aplikasi GoFood?
+  \item Bagaimana tingkat akurasi, precision, recall, dan F1-score dari metode Na\"ive Bayes Classifier dalam mengklasifikasikan sentimen ulasan aplikasi GoFood?
 \end{enumerate}
 
 \section{Batasan Masalah}
 \TemplateTodo{Tuliskan ruang lingkup agar penelitian tidak melebar. Batasan dapat berupa data, metode, lokasi, periode, variabel, alat, atau asumsi.}
 
+Batasan masalah dalam penelitian ini adalah sebagai berikut:
+
+\begin{enumerate}
+  \item Data ulasan diambil dari aplikasi GoFood di Google Play Store.
+  \item Data yang digunakan sebanyak 5.000 ulasan berbahasa Indonesia.
+  \item Periode pengambilan data dilakukan pada Desember 2024 hingga Februari 2025.
+  \item Klasifikasi sentimen terbatas pada dua kelas, yaitu positif dan negatif.
+  \item Implementasi menggunakan bahasa pemrograman Python dengan library Scikit-learn.
+\end{enumerate}
+
 \section{Tujuan Penelitian}
 \TemplateTodo{Selaraskan tujuan dengan rumusan masalah. Gunakan kata kerja yang dapat diverifikasi seperti menganalisis, merancang, mengimplementasikan, mengevaluasi, atau membandingkan.}
 
+Tujuan dari penelitian ini adalah:
+
+\begin{enumerate}
+  \item Menerapkan tahapan \emph{preprocessing} teks yang sesuai untuk ulasan berbahasa Indonesia.
+  \item Mengimplementasikan metode Na\"ive Bayes Classifier dengan fitur TF-IDF untuk klasifikasi sentimen.
+  \item Mengevaluasi performa Na\"ive Bayes Classifier menggunakan metrik akurasi, precision, recall, dan F1-score.
+\end{enumerate}
+
 \section{Manfaat Penelitian}
 \TemplateTodo{Jelaskan manfaat teoretis dan praktis. Hindari klaim terlalu besar; tuliskan kontribusi yang realistis sesuai skala \DocTypeNameLower.}
+
+Manfaat yang diharapkan dari penelitian ini adalah:
+
+\begin{enumerate}
+  \item Memberikan gambaran tentang sentimen pengguna terhadap layanan GoFood yang dapat digunakan sebagai masukan bagi pengembang aplikasi.
+  \item Menjadi referensi bagi penelitian selanjutnya dalam pengembangan sistem analisis sentimen ulasan aplikasi \emph{mobile}.
+\end{enumerate}

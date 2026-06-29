@@ -3,31 +3,85 @@
 \section{Penelitian Terdahulu}
 \TemplateTodo{Ringkas penelitian terdahulu yang paling relevan. Jelaskan tujuan, metode, data, hasil, dan keterbatasannya. Akhiri dengan posisi penelitian Anda dibandingkan karya-karya tersebut.}
 
-Tinjauan pustaka bukan sekadar daftar ringkasan artikel. Susun pembahasan secara tematik sehingga pembaca memahami perkembangan pengetahuan, kesenjangan yang masih ada, dan alasan penelitian ini diperlukan.
+Beberapa penelitian telah dilakukan terkait analisis sentimen menggunakan berbagai metode. Tabel~\ref{tab:prior-research} merangkum penelitian terdahulu yang relevan.
 
 \begin{table}[H]
 \centering
-\caption{Contoh format ringkasan penelitian terdahulu}
-\begin{tabularx}{\linewidth}{@{}p{0.18\linewidth}X X@{}}
+\caption{Ringkasan penelitian terdahulu}
+\label{tab:prior-research}
+\begin{tabularx}{\linewidth}{@{}p{0.15\linewidth}X X X@{}}
 \toprule
-Peneliti & Fokus dan Metode & Keterkaitan dengan \DocTypeName \\
+Peneliti & Metode & Data & Akurasi \\
 \midrule
-Nama peneliti (tahun) & Ringkasan pendek metode, data, dan hasil utama. & Jelaskan pelajaran, celah, atau pembeda penelitian Anda. \\
+Go dkk. \cite{go2019} & Na\"ive Bayes & Twitter (1,6 juta data) & 81,3\% \\
+Maas dkk. \cite{maas2011} & Word Vectors + Logistic Regression & IMDB (25.000 data) & 88,9\% \\
+Gede dkk. \cite{gewang2022} & Na\"ive Bayes + TF-IDF & Ulasan Play Store (1.000 data) & 84,5\% \\
+Zhang dkk. \cite{zhang2020} & Deep Learning (LSTM) & Ulasan Amazon (50.000 data) & 91,2\% \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
+Penelitian-penelitian tersebut menunjukkan bahwa Na\"ive Bayes Classifier memberikan hasil yang kompetitif untuk klasifikasi teks, terutama pada dataset berukuran kecil hingga menengah. Penelitian ini menggunakan pendekatan serupa dengan dataset dan domain yang berbeda, yaitu ulasan aplikasi GoFood berbahasa Indonesia.
+
 \section{Landasan Teori}
 \TemplateTodo{Jelaskan konsep, teori, algoritma, standar, atau kerangka kerja yang benar-benar digunakan pada penelitian.}
 
-\subsection{Konsep Utama Pertama}
-Tuliskan definisi, prinsip kerja, dan relevansi konsep terhadap penelitian. Gunakan sitasi untuk definisi atau teori yang bukan pendapat pribadi.
+\subsection{Analisis Sentimen}
 
-\subsection{Konsep Utama Kedua}
-Tambahkan konsep lain sesuai kebutuhan. Jika menggunakan rumus, jelaskan arti setiap simbol dan alasan rumus tersebut digunakan.
+Analisis sentimen adalah bidang studi yang menganalisis opini, sentimen, evaluasi, sikap, dan emosi seseorang terhadap suatu entitas seperti produk, layanan, organisasi, atau topik \cite{feldman2013}. Analisis sentimen termasuk dalam bidang \emph{Natural Language Processing} (NLP) dan \emph{text mining}. Tujuan utamanya adalah menentukan polaritas teks apakah cenderung positif, negatif, atau netral.
+
+\subsection{Preprocessing Teks}
+
+Teks ulasan mentah mengandung banyak \emph{noise} yang dapat menurunkan performa klasifikasi. Tahapan \emph{preprocessing} yang umum digunakan meliputi:
+
+\begin{enumerate}
+  \item \textbf{Case Folding}: Mengubah seluruh huruf menjadi huruf kecil (\emph{lowercase}).
+  \item \textbf{Tokenisasi}: Memecah kalimat menjadi token-token kata.
+  \item \textbf{Filtering}: Menghapus kata-kata yang tidak bermakna (\emph{stopwords}) dan tanda baca.
+  \item \textbf{Stemming}: Mengubah kata berimbuhan menjadi kata dasar.
+\end{enumerate}
+
+\subsection{TF-IDF}
+
+TF-IDF (Term Frequency-Inverse Document Frequency) adalah metode pembobotan fitur yang memberikan nilai pada setiap kata berdasarkan seberapa sering kata tersebut muncul dalam suatu dokumen dan seberapa jarang kata tersebut muncul di seluruh dokumen \cite{manning2008}. Bobot TF-IDF dihitung dengan persamaan:
+
+\begin{equation}
+\text{TF-IDF}(t,d) = \text{TF}(t,d) \times \text{IDF}(t)
+\end{equation}
+
+dengan $\text{TF}(t,d)$ adalah frekuensi kemunculan kata $t$ pada dokumen $d$, dan $\text{IDF}(t)$ dihitung sebagai:
+
+\begin{equation}
+\text{IDF}(t) = \log\left(\frac{N}{\text{DF}(t)}\right)
+\end{equation}
+
+di mana $N$ adalah jumlah total dokumen dan $\text{DF}(t)$ adalah jumlah dokumen yang mengandung kata $t$.
+
+\subsection{Na\"ive Bayes Classifier}
+
+Na\"ive Bayes Classifier adalah metode klasifikasi probabilistik yang didasarkan pada Teorema Bayes dengan asumsi independensi antar fitur \cite{han2012}. Meskipun asumsi independensi jarang terpenuhi di dunia nyata, NBC terbukti bekerja dengan baik dalam klasifikasi teks. Teorema Bayes dinyatakan sebagai:
+
+\begin{equation}
+P(C \mid X) = \frac{P(X \mid C) \cdot P(C)}{P(X)}
+\end{equation}
+
+dengan $P(C \mid X)$ adalah probabilitas dokumen $X$ termasuk ke dalam kelas $C$, $P(X \mid C)$ adalah probabilitas kemunculan dokumen $X$ pada kelas $C$, $P(C)$ adalah probabilitas awal kelas $C$, dan $P(X)$ adalah probabilitas kemunculan dokumen $X$.
+
+\section{Kerangka Pemikiran}
+\TemplateTodo{Jelaskan hubungan antara masalah, teori, metode, data, dan keluaran penelitian. Bagian ini dapat dibantu dengan gambar alur konseptual.}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\linewidth]{example-figure.pdf}
+\caption{Alur kerangka pemikiran penelitian}
+\label{fig:framework}
+\end{figure}
+
+Gambar~\ref{fig:framework} menunjukkan alur kerangka pemikiran penelitian. Data ulasan dari Google Play Store akan melalui tahap \emph{preprocessing}, kemudian diekstraksi fiturnya menggunakan TF-IDF, dan diklasifikasikan menggunakan Na\"ive Bayes Classifier. Hasil klasifikasi dievaluasi menggunakan \emph{confusion matrix} untuk memperoleh nilai akurasi, precision, recall, dan F1-score. Contoh hasil pengujian metrik dapat dilihat pada Tabel~\ref{tab:csv-example} yang menampilkan perbandingan nilai metrik sebelum dan sesudah penerapan sistem.
 
 \subsection{Contoh Tabel dari Data CSV}
-Template dapat menampilkan tabel yang diisi dari berkas CSV. Simpan data di folder \texttt{figures/} atau \texttt{references/} lalu gunakan paket \texttt{csvsimple}.
+
+Template dapat menampilkan tabel yang diisi dari berkas CSV. Simpan data di folder \texttt{references/} dan gunakan paket \texttt{csvsimple}.
 
 \begin{table}[H]
 \centering
@@ -37,40 +91,3 @@ Template dapat menampilkan tabel yang diisi dari berkas CSV. Simpan data di fold
 \end{table}
 
 Tabel~\ref{tab:csv-example} menampilkan contoh data dari berkas \texttt{references/example.csv}. Pastikan jumlah kolom di CSV sesuai dengan tampilan yang diinginkan.
-
-\section{Kerangka Pemikiran}
-\TemplateTodo{Jelaskan hubungan antara masalah, teori, metode, data, dan keluaran penelitian. Bagian ini dapat dibantu dengan gambar alur konseptual.}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.75\linewidth]{example-figure.pdf}
-\caption{Contoh penggunaan gambar pada template}
-\label{fig:example-figure}
-\end{figure}
-
-Contoh penggunaan gambar ditunjukkan pada Gambar~\ref{fig:example-figure}. Notasi matematika dapat digunakan untuk menjelaskan hubungan antar lapisan pada Gambar~\ref{fig:example-figure}. Misalkan vektor masukan dinyatakan sebagai
-\begin{equation}
-\mathbf{x} =
-\begin{bmatrix}
-x_1 & x_2 & \cdots & x_n
-\end{bmatrix}^{\mathsf{T}}.
-\end{equation}
-Untuk lapisan tersembunyi ke-$l$, aktivasi neuron dihitung dengan
-\begin{equation}
-\mathbf{a}^{[l]} = \sigma\left(\mathbf{W}^{[l]}\mathbf{a}^{[l-1]} + \mathbf{b}^{[l]}\right),
-\qquad l = 1,2,\ldots,L-1,
-\end{equation}
-dengan $\mathbf{a}^{[0]}=\mathbf{x}$, $\mathbf{W}^{[l]}$
-adalah matriks bobot pada lapisan ke-$l$,
-$\mathbf{b}^{[l]}$ adalah vektor bias, dan
-$\sigma(\cdot)$ adalah fungsi aktivasi. Keluaran model dinyatakan sebagai
-\begin{equation}
-\hat{\mathbf{y}} = f\left(\mathbf{W}^{[L]}\mathbf{a}^{[L-1]} + \mathbf{b}^{[L]}\right),
-\end{equation}
-dengan komponen keluaran
-\begin{equation}
-\hat{\mathbf{y}} =
-\begin{bmatrix}
-\hat{y}_1 & \hat{y}_2 & \cdots & \hat{y}_k
-\end{bmatrix}^{\mathsf{T}}.
-\end{equation}

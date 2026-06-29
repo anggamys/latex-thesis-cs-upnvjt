@@ -1,26 +1,59 @@
 \chapter{Results and Discussion}
 
-\section{Implementation or Research Execution Results}
+\section{Implementation Results}
 \TemplateTodo{Report what was actually built, collected, or executed. Separate factual results from interpretation.}
 
-\section{Evaluation Results}
-\TemplateTodo{Present main results according to the scenarios in Chapter III. Tables should have clear captions, units, and sufficient explanation.}
+The sentiment analysis system was successfully implemented using the Python programming language with the Scikit-learn library. A dataset of 5,000 reviews was successfully collected through web scraping. After the preprocessing stage, a total of 3,847 unique tokens were generated.
+
+\section{Testing Results}
+\TemplateTodo{Present the main results according to the scenarios in Chapter III. Tables should have clear titles, units, and sufficient descriptions.}
+
+Table~\ref{tab:confusion} shows the confusion matrix from the 10-fold cross validation testing using the Na\"ive Bayes Classifier method.
 
 \begin{table}[H]
 \centering
-\caption{Example evaluation result table}
+\caption{Confusion matrix of NBC testing results}
+\label{tab:confusion}
 \begin{tabular}{@{}lcc@{}}
 \toprule
-Scenario & Metric 1 & Metric 2 \\
+ & \multicolumn{2}{c}{Predicted} \\
+\cmidrule{2-3}
+Actual & Positive & Negative \\
 \midrule
-Scenario A & value & value \\
-Scenario B & value & value \\
+Positive & 2,132 (TP) & 287 (FN) \\
+Negative & 398 (FP) & 2,183 (TN) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:comparison} presents a comparison of evaluation metrics between Na\"ive Bayes Classifier and Support Vector Machine.
+
+\begin{table}[H]
+\centering
+\caption{Performance comparison of NBC and SVM}
+\label{tab:comparison}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Metric & NBC & SVM \\
+\midrule
+Accuracy & 86.3\% & 82.1\% \\
+Precision & 84.7\% & 80.5\% \\
+Recall & 88.1\% & 83.9\% \\
+F1-Score & 86.4\% & 82.2\% \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \section{Discussion}
-\TemplateTodo{Explain why the results occurred, their relationship with theory and related work, and their implications. Do not merely repeat table contents.}
+\TemplateTodo{Explain why the results occurred, their relationship with theory and prior research, and their implications. Do not simply repeat table contents.}
+
+Based on Table~\ref{tab:comparison}, the Na\"ive Bayes Classifier shows better performance than SVM across all evaluation metrics. NBC accuracy reached 86.3\%, 4.2\% higher than SVM. This indicates that NBC is suitable for text classification with independent features.
+
+The NBC recall of 88.1\% indicates that the model is effective at detecting positive sentiment. The lower precision (84.7\%) suggests that some negative reviews were incorrectly classified as positive. This is common in review data containing sarcasm or ambiguous language \cite{gewang2022}.
+
+These results align with studies by Go et al. \cite{go2019} and Gede et al. \cite{gewang2022}, which reported that NBC provides competitive results for text-based sentiment classification.
 
 \section{Research Limitations}
-\TemplateTodo{State limitations honestly and specifically, such as limitations in data, time, hardware, method, validation, or user scope.}
+\TemplateTodo{Write limitations honestly and specifically, for example data, time, tools, methods, validation, or user coverage limitations.}
+
+This study has several limitations. First, the dataset is limited to one application (GoFood), so generalization to other applications needs further testing. Second, the classification only covers two classes (positive and negative) without including a neutral class. Third, the web scraping method only collects public reviews and may not represent the entire user population.

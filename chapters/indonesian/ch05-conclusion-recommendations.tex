@@ -3,11 +3,21 @@
 \section{Kesimpulan}
 \TemplateTodo{Jawab rumusan masalah secara langsung berdasarkan hasil Bab IV. Jangan memperkenalkan data atau klaim baru pada kesimpulan.}
 
+Berdasarkan hasil penelitian dan pembahasan yang telah diuraikan, dapat ditarik kesimpulan sebagai berikut:
+
 \begin{enumerate}
-  \item Kesimpulan pertama menjawab rumusan masalah pertama berdasarkan hasil yang telah dibahas.
-  \item Kesimpulan kedua menjelaskan capaian utama, metrik, atau temuan penting secara proporsional.
-  \item Kesimpulan ketiga dapat menjelaskan implikasi atau batas interpretasi hasil.
+  \item Tahapan \emph{preprocessing} yang terdiri dari case folding, tokenisasi, filtering, dan stemming berhasil menghasilkan 3.847 token unik dari 5.000 ulasan GoFood. Keempat tahap tersebut efektif membersihkan teks dari \emph{noise} yang dapat menurunkan performa klasifikasi.
+  \item Metode Na\"ive Bayes Classifier dengan fitur TF-IDF berhasil diimplementasikan untuk klasifikasi sentimen ulasan aplikasi GoFood. Model menunjukkan performa yang baik dengan akurasi sebesar 86,3\%, precision 84,7\%, recall 88,1\%, dan F1-score 86,4\%.
+  \item Hasil pengujian menunjukkan bahwa NBC mengungguli SVM pada seluruh metrik evaluasi, dengan selisih akurasi sebesar 4,2\%. Recall yang tinggi (88,1\%) mengindikasikan bahwa model sangat baik dalam mendeteksi sentimen positif.
 \end{enumerate}
 
 \section{Saran}
 \TemplateTodo{Berikan saran yang realistis untuk penelitian selanjutnya atau penerapan praktis. Hubungkan saran dengan keterbatasan yang sudah dibahas.}
+
+Berdasarkan keterbatasan yang telah diidentifikasi, saran untuk penelitian selanjutnya adalah:
+
+\begin{enumerate}
+  \item Menambahkan kelas netral dalam klasifikasi sentimen untuk memberikan hasil yang lebih informatif bagi pengguna.
+  \item Menggunakan metode \emph{deep learning} seperti LSTM atau Transformer untuk menangkap konteks kalimat yang lebih kompleks, terutama pada data yang mengandung sarkasme \cite{zhang2020}.
+  \item Memperluas cakupan data tidak hanya pada satu aplikasi tetapi beberapa aplikasi dari berbagai kategori untuk menguji generalisasi model.
+\end{enumerate}

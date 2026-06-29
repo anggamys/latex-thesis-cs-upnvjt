@@ -3,26 +3,70 @@
 \section{Alur Penelitian}
 \TemplateTodo{Jelaskan tahapan penelitian dari awal hingga akhir. Pastikan alur sesuai dengan rumusan masalah dan hasil yang akan dilaporkan.}
 
-Metodologi harus cukup rinci agar penelitian dapat dipahami dan, sejauh mungkin, direplikasi. Tuliskan keputusan penting, parameter, asumsi, serta alasan pemilihan metode.
+Penelitian ini mengikuti kerangka kerja CRISP-DM (Cross-Industry Standard Process for Data Mining) yang terdiri dari enam tahap: \emph{business understanding}, \emph{data understanding}, \emph{data preparation}, \emph{modeling}, \emph{evaluation}, dan \emph{deployment}. Fokus utama penelitian adalah pada tahap \emph{data preparation} hingga \emph{evaluation}.
 
 \section{Objek dan Data Penelitian}
 \TemplateTodo{Jelaskan objek penelitian, sumber data, kriteria inklusi/eksklusi, periode pengambilan data, jumlah data, dan aspek etik atau perizinan jika relevan.}
 
+Dataset yang digunakan dalam penelitian ini adalah ulasan aplikasi GoFood dari Google Play Store. Data dikumpulkan menggunakan teknik \emph{web scraping} dengan library Python Google-Play-Scraper. Sebanyak 5.000 ulasan berbahasa Indonesia berhasil dikumpulkan dalam periode Desember 2024 hingga Februari 2025. Setiap ulasan diberi label sentimen positif atau negatif secara manual oleh dua orang \emph{annotator} untuk memastikan konsistensi.
+
 \section{Perancangan Metode atau Sistem}
 \TemplateTodo{Uraikan rancangan metode, model, sistem, atau prosedur eksperimen. Hubungkan setiap komponen dengan tujuan penelitian.}
 
+\subsection{Tahap Preprocessing}
+
+Sebelum masuk ke proses klasifikasi, teks ulasan melalui empat tahap \emph{preprocessing}:
+
+\begin{enumerate}
+  \item \textbf{Case folding}: mengubah seluruh teks menjadi huruf kecil.
+  \item \textbf{Tokenisasi}: memecah kalimat menjadi kata-kata penyusunnya.
+  \item \textbf{Filtering}: menghapus \emph{stopwords}, tanda baca, dan angka.
+  \item \textbf{Stemming}: mengubah kata berimbuhan menjadi kata dasar menggunakan algoritma Nazief-Adriani.
+\end{enumerate}
+
+\subsection{Algoritma Na\"ive Bayes Classifier}
+
+Algoritma~\ref{alg:nbc} menunjukkan langkah-langkah \emph{training} model Na\"ive Bayes Classifier.
+
 \begin{algorithm}[H]
-\caption{Contoh format algoritma penelitian}
-\KwInput{Data atau masukan penelitian}
-\KwOutput{Hasil yang dievaluasi}
-Lakukan tahap persiapan data\;
-Terapkan metode yang diusulkan\;
-Evaluasi keluaran menggunakan metrik yang sesuai\;
-\KwReturn{Ringkasan hasil dan analisis}
+\caption{\emph{Training} Na\"ive Bayes Classifier}
+\label{alg:nbc}
+\KwInput{Dataset pelatihan $D = \{(d_1, c_1), (d_2, c_2), \ldots, (d_n, c_n)\}$}
+\KwOutput{Model NBC yang telah terlatih}
+Untuk setiap kelas $c_k$ dalam himpunan kelas $C$\;
+  Hitung probabilitas prior $P(c_k) = \frac{N_{c_k}}{N}$\;
+Untuk setiap kata $w_i$ dalam kosakata $V$\;
+  Untuk setiap kelas $c_k$\;
+    Hitung probabilitas kondisional $P(w_i \mid c_k) = \frac{\text{count}(w_i, c_k) + 1}{\sum_{w \in V} \text{count}(w, c_k) + |V|}$\;
+  \KwReturn{Model dengan parameter $P(c_k)$ dan $P(w_i \mid c_k)$ untuk setiap kelas}
 \end{algorithm}
+
+\subsection{Confusion Matrix}
+
+Evaluasi performa model dilakukan menggunakan \emph{confusion matrix} yang menghasilkan empat nilai: True Positive (TP), True Negative (TN), False Positive (FP), dan False Negative (FN). Dari nilai tersebut dihitung metrik evaluasi sebagai berikut:
+
+\begin{equation}
+\text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}
+\end{equation}
+
+\begin{equation}
+\text{Precision} = \frac{TP}{TP + FP}
+\end{equation}
+
+\begin{equation}
+\text{Recall} = \frac{TP}{TP + FN}
+\end{equation}
+
+\begin{equation}
+\text{F1-Score} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}
+\end{equation}
 
 \section{Skenario Pengujian}
 \TemplateTodo{Jelaskan rancangan eksperimen, pembagian data, pembanding, metrik evaluasi, perangkat yang digunakan, dan cara memastikan hasil adil.}
 
+Pengujian dilakukan menggunakan 10-fold cross validation untuk memastikan hasil yang stabil dan tidak bergantung pada pembagian data tertentu. Dataset dibagi menjadi 10 subset secara acak. Setiap iterasi menggunakan 9 subset sebagai data latih dan 1 subset sebagai data uji. Sebagai pembanding, hasil NBC juga dibandingkan dengan metode Support Vector Machine (SVM) dengan kernel linear.
+
 \section{Teknik Analisis Data}
 \TemplateTodo{Jelaskan bagaimana hasil akan dianalisis: statistik deskriptif, perbandingan metrik, analisis kesalahan, validasi pengguna, atau pendekatan lain yang sesuai.}
+
+Hasil pengujian dianalisis dengan membandingkan nilai akurasi, precision, recall, dan F1-score antara metode NBC dan SVM. Selain itu, dilakukan analisis kesalahan untuk mengidentifikasi pola data yang salah diklasifikasikan. Ulasan yang salah diklasifikasikan dikelompokkan berdasarkan karakteristiknya untuk memahami kelemahan model.

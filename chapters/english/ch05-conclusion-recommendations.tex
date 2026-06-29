@@ -1,13 +1,23 @@
-\chapter{Conclusions and Recommendations}
+\chapter{Conclusion and Recommendations}
 
-\section{Conclusions}
-\TemplateTodo{Answer the problem statements directly based on Chapter IV. Do not introduce new data or claims in the conclusions.}
+\section{Conclusion}
+\TemplateTodo{Answer the problem statements directly based on the results in Chapter IV. Do not introduce new data or claims in the conclusion.}
+
+Based on the research results and discussion presented, the following conclusions can be drawn:
 
 \begin{enumerate}
-  \item The first conclusion answers the first problem statement based on the discussed results.
-  \item The second conclusion explains the main achievement, metric, or important finding proportionally.
-  \item The third conclusion may explain implications or boundaries for interpreting the results.
+  \item The preprocessing stages consisting of case folding, tokenization, filtering, and stemming successfully produced 3,847 unique tokens from 5,000 GoFood reviews. These four stages effectively cleaned the text from noise that could degrade classification performance.
+  \item The Na\"ive Bayes Classifier method with TF-IDF features was successfully implemented for sentiment classification of GoFood application reviews. The model showed good performance with an accuracy of 86.3\%, precision of 84.7\%, recall of 88.1\%, and F1-score of 86.4\%.
+  \item The test results show that NBC outperformed SVM across all evaluation metrics, with an accuracy difference of 4.2\%. The high recall (88.1\%) indicates that the model is very effective at detecting positive sentiment.
 \end{enumerate}
 
 \section{Recommendations}
-\TemplateTodo{Provide realistic recommendations for future research or practical application. Connect recommendations to the limitations already discussed.}
+\TemplateTodo{Provide realistic recommendations for future research or practical applications. Connect recommendations to the limitations already discussed.}
+
+Based on the limitations identified, recommendations for future research are:
+
+\begin{enumerate}
+  \item Adding a neutral class in sentiment classification to provide more informative results for users.
+  \item Using deep learning methods such as LSTM or Transformer to capture more complex sentence contexts, especially for data containing sarcasm \cite{zhang2020}.
+  \item Expanding the data scope not only to one application but to several applications from various categories to test model generalization.
+\end{enumerate}

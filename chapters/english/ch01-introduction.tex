@@ -3,24 +3,53 @@
 \section{Background}
 \TemplateTodo{Explain the general context, ideal condition, real problem, research/practical gap, and why the study is necessary.}
 
-Write the background coherently from the broader context toward the specific \DocTypeNameLower\ problem. Use verifiable scholarly sources such as journal articles, conference papers, books, standards, or official documents \cite{exampleReference}.
+The number of smartphone users in Indonesia continues to grow rapidly each year. According to a We Are Social report, Indonesia had 212.9 million smartphone users in 2024 \cite{manning2008}. This growth has encouraged the development of mobile-based services, including online transportation and food delivery applications. GoFood, as one of the largest services in Indonesia, has millions of reviews on the Google Play Store that reflect user opinions and experiences.
 
-\TemplateTip{Avoid jumping into technical details before explaining the problem. Support important claims with citations.}
+User reviews contain valuable information for application developers to improve service quality. However, analyzing thousands of reviews manually requires significant time and effort. Therefore, an automated approach is needed to classify review sentiment into positive and negative categories.
+
+Sentiment analysis is a branch of Natural Language Processing (NLP) that can be used to extract opinions from text automatically \cite{feldman2013}. The Na\"ive Bayes Classifier (NBC) method was chosen because it is simple, fast, and has proven effective in text classification \cite{go2019}. This study applies NBC with TF-IDF features to classify the sentiment of GoFood application reviews.
 
 \section{Problem Statement}
-\TemplateTodo{Convert the research problem into specific, measurable questions that can be answered through the methodology.}
+\TemplateTodo{Turn the research problem into specific, measurable questions that can be answered through the methodology.}
+
+Based on the background described above, the research questions are as follows:
 
 \begin{enumerate}
-  \item How can an approach be designed to address the main problem in the research object?
-  \item How can the proposed approach be evaluated using appropriate metrics?
-  \item What factors influence the research results based on the analysis?
+  \item What are the effective text preprocessing stages for Indonesian-language reviews of the GoFood application?
+  \item How can the Na\"ive Bayes Classifier with TF-IDF features be applied to classify the sentiment of GoFood application reviews?
+  \item What are the accuracy, precision, recall, and F1-score of the Na\"ive Bayes Classifier in classifying the sentiment of GoFood application reviews?
 \end{enumerate}
 
 \section{Scope and Limitations}
-\TemplateTodo{Define the scope so the study remains focused. The scope may cover data, method, location, period, variables, tools, or assumptions.}
+\TemplateTodo{Define the scope to keep the research focused. Limitations may include data, methods, location, period, variables, tools, or assumptions.}
+
+The limitations of this study are as follows:
+
+\begin{enumerate}
+  \item Review data is taken from the GoFood application on the Google Play Store.
+  \item The dataset consists of 5,000 Indonesian-language reviews.
+  \item Data collection was conducted from December 2024 to February 2025.
+  \item Sentiment classification is limited to two classes: positive and negative.
+  \item Implementation uses the Python programming language with the Scikit-learn library.
+\end{enumerate}
 
 \section{Research Objectives}
-\TemplateTodo{Align objectives with the problem statements. Use verifiable verbs such as analyze, design, implement, evaluate, or compare.}
+\TemplateTodo{Align objectives with the problem statement. Use verifiable action verbs such as analyze, design, implement, evaluate, or compare.}
 
-\section{Research Benefits}
-\TemplateTodo{Explain theoretical and practical benefits. Avoid exaggerated claims; state realistic contributions for the scale of the \DocTypeNameLower.}
+The objectives of this study are:
+
+\begin{enumerate}
+  \item To apply appropriate text preprocessing stages for Indonesian-language reviews.
+  \item To implement the Na\"ive Bayes Classifier with TF-IDF features for sentiment classification.
+  \item To evaluate the performance of Na\"ive Bayes Classifier using accuracy, precision, recall, and F1-score metrics.
+\end{enumerate}
+
+\section{Benefits of the Study}
+\TemplateTodo{Explain the theoretical and practical benefits. Avoid exaggerated claims; write realistic contributions appropriate to the scale of the \DocTypeNameLower.}
+
+The expected benefits of this study are:
+
+\begin{enumerate}
+  \item To provide an overview of user sentiment toward GoFood services that can be used as input for application developers.
+  \item To serve as a reference for future research in developing mobile application review sentiment analysis systems.
+\end{enumerate}

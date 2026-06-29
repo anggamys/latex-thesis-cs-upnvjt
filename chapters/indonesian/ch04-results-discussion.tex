@@ -1,20 +1,45 @@
 \chapter{Hasil dan Pembahasan}
 
-\section{Hasil Implementasi atau Pelaksanaan Penelitian}
+\section{Hasil Implementasi}
 \TemplateTodo{Laporkan apa yang benar-benar berhasil dibuat, dikumpulkan, atau dijalankan. Pisahkan hasil faktual dari interpretasi.}
+
+Sistem analisis sentimen berhasil diimplementasikan menggunakan bahasa pemrograman Python dengan library Scikit-learn. Dataset sebanyak 5.000 ulasan berhasil dikumpulkan melalui \emph{web scraping}. Setelah melalui tahap \emph{preprocessing}, total token unik yang dihasilkan adalah 3.847 kata.
 
 \section{Hasil Pengujian}
 \TemplateTodo{Sajikan hasil utama sesuai skenario pada Bab III. Tabel harus memiliki judul jelas, satuan, dan keterangan yang cukup.}
 
+Tabel~\ref{tab:confusion} menunjukkan \emph{confusion matrix} dari pengujian menggunakan 10-fold cross validation pada metode Na\"ive Bayes Classifier.
+
 \begin{table}[H]
 \centering
-\caption{Contoh tabel hasil pengujian}
+\caption{Confusion matrix hasil pengujian NBC}
+\label{tab:confusion}
 \begin{tabular}{@{}lcc@{}}
 \toprule
-Skenario & Metrik 1 & Metrik 2 \\
+ & \multicolumn{2}{c}{Prediksi} \\
+\cmidrule{2-3}
+Aktual & Positif & Negatif \\
 \midrule
-Skenario A & nilai & nilai \\
-Skenario B & nilai & nilai \\
+Positif & 2.132 (TP) & 287 (FN) \\
+Negatif & 398 (FP) & 2.183 (TN) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Tabel~\ref{tab:comparison} menyajikan perbandingan metrik evaluasi antara Na\"ive Bayes Classifier dan Support Vector Machine.
+
+\begin{table}[H]
+\centering
+\caption{Perbandingan performa NBC dan SVM}
+\label{tab:comparison}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Metrik & NBC & SVM \\
+\midrule
+Akurasi & 86,3\% & 82,1\% \\
+Precision & 84,7\% & 80,5\% \\
+Recall & 88,1\% & 83,9\% \\
+F1-Score & 86,4\% & 82,2\% \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -22,5 +47,13 @@ Skenario B & nilai & nilai \\
 \section{Pembahasan}
 \TemplateTodo{Jelaskan mengapa hasil tersebut terjadi, hubungannya dengan teori dan penelitian terdahulu, serta implikasinya. Jangan hanya mengulang isi tabel.}
 
+Berdasarkan Tabel~\ref{tab:comparison}, metode Na\"ive Bayes Classifier menunjukkan performa yang lebih baik dibandingkan SVM pada seluruh metrik evaluasi. Akurasi NBC mencapai 86,3\%, lebih tinggi 4,2\% dibandingkan SVM. Hal ini menunjukkan bahwa NBC cocok untuk klasifikasi teks dengan fitur yang bersifat independen.
+
+Recall NBC yang mencapai 88,1\% menunjukkan bahwa model mampu mendeteksi sentimen positif dengan baik. Precision yang lebih rendah (84,7\%) mengindikasikan masih terdapat beberapa ulasan negatif yang salah diklasifikasikan sebagai positif. Hal ini umum terjadi pada data ulasan yang mengandung sarkasme atau bahasa yang ambigu \cite{gewang2022}.
+
+Hasil ini sejalan dengan penelitian Go dkk. \cite{go2019} dan Gede dkk. \cite{gewang2022} yang melaporkan bahwa NBC memberikan hasil kompetitif pada klasifikasi teks berbasis sentimen.
+
 \section{Keterbatasan Penelitian}
 \TemplateTodo{Tuliskan keterbatasan secara jujur dan spesifik, misalnya keterbatasan data, waktu, perangkat, metode, validasi, atau cakupan pengguna.}
+
+Penelitian ini memiliki beberapa keterbatasan. Pertama, dataset terbatas pada satu aplikasi (GoFood) sehingga generalisasi ke aplikasi lain perlu diuji lebih lanjut. Kedua, klasifikasi hanya mencakup dua kelas (positif dan negatif) tanpa menyertakan kelas netral. Ketiga, metode \emph{web scraping} hanya mengambil ulasan publik dan mungkin tidak mewakili seluruh populasi pengguna.

@@ -1,28 +1,72 @@
 \chapter{Research Methodology}
 
-\section{Research Workflow}
-\TemplateTodo{Explain the research stages from beginning to end. Ensure the workflow aligns with the problem statements and reported results.}
+\section{Research Flow}
+\TemplateTodo{Explain the research stages from start to finish. Ensure the flow aligns with the problem statement and the results to be reported.}
 
-The methodology should be detailed enough for the study to be understood and, where possible, replicated. Describe important decisions, parameters, assumptions, and reasons for method selection.
+This study follows the CRISP-DM (Cross-Industry Standard Process for Data Mining) framework, which consists of six stages: business understanding, data understanding, data preparation, modeling, evaluation, and deployment. The main focus of this study is on the data preparation through evaluation stages.
 
 \section{Research Object and Data}
-\TemplateTodo{Describe the research object, data sources, inclusion/exclusion criteria, collection period, data quantity, and ethical or permission aspects if relevant.}
+\TemplateTodo{Explain the research object, data source, inclusion/exclusion criteria, data collection period, data size, and ethical or licensing aspects if relevant.}
+
+The dataset used in this study consists of GoFood application reviews from the Google Play Store. Data were collected using web scraping techniques with the Python Google-Play-Scraper library. A total of 5,000 Indonesian-language reviews were collected from December 2024 to February 2025. Each review was manually labeled as positive or negative sentiment by two annotators to ensure consistency.
 
 \section{Method or System Design}
-\TemplateTodo{Describe the design of the method, model, system, or experimental procedure. Connect each component with the research objectives.}
+\TemplateTodo{Describe the design of the method, model, system, or experimental procedure. Connect each component to the research objectives.}
+
+\subsection{Preprocessing Stage}
+
+Before classification, the review text goes through four preprocessing stages:
+
+\begin{enumerate}
+  \item \textbf{Case folding}: converting all text to lowercase.
+  \item \textbf{Tokenization}: splitting sentences into constituent words.
+  \item \textbf{Filtering}: removing stopwords, punctuation, and numbers.
+  \item \textbf{Stemming}: converting affixed words to base form using the Nazief-Adriani algorithm.
+\end{enumerate}
+
+\subsection{Na\"ive Bayes Classifier Algorithm}
+
+Algorithm~\ref{alg:nbc} shows the training steps of the Na\"ive Bayes Classifier model.
 
 \begin{algorithm}[H]
-\caption{Example research algorithm format}
-\KwInput{Research data or input}
-\KwOutput{Evaluated results}
-Perform data preparation\;
-Apply the proposed method\;
-Evaluate outputs using appropriate metrics\;
-\KwReturn{Summary of results and analysis}
+\caption{Na\"ive Bayes Classifier Training}
+\label{alg:nbc}
+\KwInput{Training dataset $D = \{(d_1, c_1), (d_2, c_2), \ldots, (d_n, c_n)\}$}
+\KwOutput{Trained NBC model}
+For each class $c_k$ in class set $C$\;
+  Calculate prior probability $P(c_k) = \frac{N_{c_k}}{N}$\;
+For each word $w_i$ in vocabulary $V$\;
+  For each class $c_k$\;
+    Calculate conditional probability $P(w_i \mid c_k) = \frac{\text{count}(w_i, c_k) + 1}{\sum_{w \in V} \text{count}(w, c_k) + |V|}$\;
+  \KwReturn{Model with parameters $P(c_k)$ and $P(w_i \mid c_k)$ for each class}
 \end{algorithm}
 
-\section{Evaluation Scenario}
-\TemplateTodo{Explain the experimental design, data split, baselines/comparators, evaluation metrics, hardware/software, and how fair comparison is ensured.}
+\subsection{Confusion Matrix}
+
+Model performance evaluation is carried out using a confusion matrix which produces four values: True Positive (TP), True Negative (TN), False Positive (FP), and False Negative (FN). Evaluation metrics are calculated as follows:
+
+\begin{equation}
+\text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}
+\end{equation}
+
+\begin{equation}
+\text{Precision} = \frac{TP}{TP + FP}
+\end{equation}
+
+\begin{equation}
+\text{Recall} = \frac{TP}{TP + FN}
+\end{equation}
+
+\begin{equation}
+\text{F1-Score} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}
+\end{equation}
+
+\section{Testing Scenario}
+\TemplateTodo{Explain the experimental design, data split, baselines, evaluation metrics, tools used, and how to ensure fair results.}
+
+Testing is conducted using 10-fold cross validation to ensure stable results that are independent of any particular data split. The dataset is randomly divided into 10 subsets. Each iteration uses 9 subsets as training data and 1 subset as testing data. For comparison, NBC results are also compared with the Support Vector Machine (SVM) method with a linear kernel.
 
 \section{Data Analysis Technique}
-\TemplateTodo{Explain how results will be analyzed: descriptive statistics, metric comparison, error analysis, user validation, or other suitable approaches.}
+\TemplateTodo{Explain how the results will be analyzed: descriptive statistics, metric comparison, error analysis, user validation, or other appropriate approaches.}
+
+The test results are analyzed by comparing accuracy, precision, recall, and F1-score values between NBC and SVM methods. Additionally, error analysis is conducted to identify patterns of misclassified data. Incorrectly classified reviews are grouped by their characteristics to understand model weaknesses.
