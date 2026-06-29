@@ -17,6 +17,14 @@ dan project ini mengikuti [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 - README restruktur total: bilingual per-section, badge CI, quick start,
   system requirements, troubleshooting, contributing guide
 
+### Known Issues
+- **Source code listing**: Belum berhasil membuat environment `codelisting`
+  yang menampilkan kode dalam format tabel 2 kolom (kolom 1 = nomor baris,
+  kolom 2 = kode) dengan font Courier 9pt single spacing. Saat ini pakai
+  `lstlisting` biasa dengan `numbers=left`. Issue: `tcolorbox` + `lstlisting`
+  belum menghasilkan efek tabel yang benar. Lihat `main.tex` untuk konfigurasi
+  yang sudah dicoba (`\newtcblisting{codelisting}`).
+
 ---
 
 ## [2.0.0] - 2026-06-29

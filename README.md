@@ -265,6 +265,21 @@ Langkah pemrosesan\;
 
 Caption masuk ke **DAFTAR KODE** / **LIST OF CODE**.
 
+### Kode Program / Source Code Listing
+
+> ⚠️ **Catatan / Note:** Fitur ini masih dalam pengembangan.
+> Rencana: Environment `codelisting` untuk menampilkan kode program
+> dalam tabel 2 kolom (kolom 1 = nomor baris, kolom 2 = kode)
+> dengan font Courier 9pt single spacing. Lihat `CHANGELOG.md` → Known Issues.
+
+Sementara gunakan `lstlisting` biasa:
+```latex
+\begin{lstlisting}[caption=Judul kode,label=lst:contoh]
+def main():
+    print("Hello")
+\end{lstlisting}
+```
+
 ### Referensi / References
 
 Tambah entri di `references/example.bib`, lalu sitasi:
