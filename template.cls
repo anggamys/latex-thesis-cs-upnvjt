@@ -8,9 +8,13 @@
 \ifPDFTeX
   \RequirePackage[T1]{fontenc}
   \RequirePackage[utf8]{inputenc}
-  \IfFileExists{newtxtext.sty}%
-    {\RequirePackage{newtxtext,newtxmath}}%
-    {\RequirePackage{times}}%
+  % Coba newtxtext (kualitas lebih baik), fallback ke times jika gagal.
+  % newtxtext membutuhkan binhex.tex (texlive-plain-generic) yang tidak selalu terinstall.
+  \IfFileExists{newtxtext.sty}{%
+    \IfFileExists{binhex.tex}{%
+      \RequirePackage{newtxtext,newtxmath}%
+    }{\RequirePackage{times}}%
+  }{\RequirePackage{times}}%
 \else
   \RequirePackage{fontspec}
   \IfFontExistsTF{Times New Roman}%
