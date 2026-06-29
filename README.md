@@ -197,13 +197,35 @@ Perintah `\Lang{...}{...}` tetap tersedia, tetapi sebaiknya hanya digunakan di f
 Dari root project, jalankan:
 
 ```bash
+make          # kompilasi penuh: pdflatex → bibtex → pdflatex → pdflatex
+```
+
+Atau jika ingin menggunakan LuaLaTeX:
+
+```bash
+make ENGINE=lualatex
+```
+
+Target lain yang tersedia:
+
+| Perintah | Kegunaan |
+|----------|----------|
+| `make` / `make all` | Kompilasi penuh (4 langkah) |
+| `make once` | Satu kali pdflatex |
+| `make fast` | Kompilasi penuh tanpa output info |
+| `make view` | Buka PDF viewer |
+| `make clean` | Hapus artifact LaTeX, PDF dipertahankan |
+| `make distclean` | Hapus artifact + PDF |
+| `make rebuild` | `clean` + kompilasi ulang |
+
+Alur manual tanpa `make`:
+
+```bash
 pdflatex -interaction=nonstopmode main.tex
 bibtex main
 pdflatex -interaction=nonstopmode main.tex
 pdflatex -interaction=nonstopmode main.tex
 ```
-
-Jika belum memakai sitasi BibTeX, `bibtex main` bisa dilewati. Namun, untuk dokumen final dengan daftar pustaka, gunakan alur lengkap.
 
 ## Menambahkan gambar
 

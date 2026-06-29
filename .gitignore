@@ -1,0 +1,37 @@
+% ── LaTeX build artifacts ────────────────────────────────────
+*.aux
+*.log
+*.toc
+*.lof
+*.lot
+*.loa
+*.out
+*.bbl
+*.blg
+*.brf
+*.bcf
+*.run.xml
+*.synctex.gz
+*.synctex
+*.fls
+*.fdb_latexmk
+*.lol
+*.ist
+*.glg
+*.glo
+*.gls
+*.glsdefs
+*.acn
+*.acr
+*.alg
+*.gl
+
+% ── Build output PDFs ────────────────────────────────────────
+main.pdf
+template-preview-*.pdf
+
+% ── OS / Editor junk ────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.swp
+*~

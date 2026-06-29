@@ -8,12 +8,17 @@
 \ifPDFTeX
   \RequirePackage[T1]{fontenc}
   \RequirePackage[utf8]{inputenc}
-  \RequirePackage{newtxtext,newtxmath}
+  \IfFileExists{newtxtext.sty}%
+    {\RequirePackage{newtxtext,newtxmath}}%
+    {\RequirePackage{times}}%
 \else
   \RequirePackage{fontspec}
   \IfFontExistsTF{Times New Roman}%
     {\setmainfont{Times New Roman}}%
-    {\setmainfont{TeX Gyre Termes}}
+    {\IfFontExistsTF{TeX Gyre Termes}%
+      {\setmainfont{TeX Gyre Termes}}%
+      {\setmainfont{Liberation Serif}}%
+    }%
 \fi
 
 % ── Page geometry (A4, top/bottom/right=2.5 cm, left=4.0 cm)
@@ -44,7 +49,7 @@
     scale=0.45,          % Mengatur ukuran logo (0.55 = 55% dari ukuran asli)
     opacity=0.05,        % Mengatur opasitas rendah (0.1 = sangat transparan / samar)
     angle=0,             % Posisi tegak (tidak berputar)
-    contents={\includegraphics{logo_upn.png}}, % File gambar logo Anda
+    contents={\includegraphics{figures/logo_upn.png}}, % File gambar logo Anda
     vshift=1cm,          % Pergeseran vertikal ke tengah (atur jika kurang pas)
     hshift=1cm           % Pergeseran horizontal ke tengah
 }
