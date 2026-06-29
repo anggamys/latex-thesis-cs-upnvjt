@@ -66,6 +66,8 @@
 \onehalfspacing
 \RequirePackage{ragged2e}
 \RequirePackage{indentfirst}
+\widowpenalty=10000
+\clubpenalty=10000
 \AtBeginDocument{\justifying}
 
 % ── Paragraph model: Indented first line
