@@ -13,6 +13,9 @@
 \newif\ifthesisdoctype
 \ifthenelse{\equal{\ThesisDocumentType}{tesis}}{\thesisdoctypetrue}{\thesisdoctypefalse}
 
+\newif\iffullthesis
+\ifthenelse{\equal{\ThesisStage}{praskripsi}}{\fullthesisfalse}{\fullthesistrue}
+
 % Choose Indonesian text if \ThesisLanguage is indonesian, English text if english.
 \newcommand{\Lang}[2]{\ifthesisenglish #2\else #1\fi}
 
@@ -31,7 +34,11 @@
 \newcommand{\DocTypeNameLower}{\Lang{\DocTypeNameLowerID}{\DocTypeNameLowerEN}}
 
 % Document labels
-\newcommand{\DocTypeLabel}{\DocTypeName}
+% Stage-aware label: praskripsi -> "PRA-SKRIPSI", skripsi -> "SKRIPSI"
+\newcommand{\ThesisStageLabelID}{\iffullthesis \DocTypeNameID\else PRA-\DocTypeNameID\fi}
+\newcommand{\ThesisStageLabelEN}{\iffullthesis \DocTypeNameEN\else PRE-\DocTypeNameEN\fi}
+\newcommand{\ThesisStageLabel}{\Lang{\ThesisStageLabelID}{\ThesisStageLabelEN}}
+\newcommand{\DocTypeLabel}{\ThesisStageLabel}
 \newcommand{\AdvisorBlockLabel}{\Lang{DOSEN PEMBIMBING}{ADVISORS}}
 \newcommand{\MinistryLabel}{\Lang{KEMENTERIAN PENDIDIKAN TINGGI, SAINS, DAN TEKNOLOGI}{MINISTRY OF HIGHER EDUCATION, SCIENCE, AND TECHNOLOGY}}
 \newcommand{\UniversityLabel}{\Lang{UNIVERSITAS PEMBANGUNAN NASIONAL VETERAN JAWA TIMUR}{UNIVERSITAS PEMBANGUNAN NASIONAL VETERAN JAWA TIMUR}}

@@ -147,6 +147,7 @@
 
 \halamanKosong
 
+\iffullthesis
 \chapter*{\Lang{ABSTRAK}{ABSTRACT}}
 \addcontentsline{toc}{chapter}{\Lang{ABSTRAK}{ABSTRACT}}
 \noindent\begin{tabular}{@{} l c p{0.60\linewidth} @{}}
@@ -160,6 +161,7 @@
 \vspace{0.5cm}
 
 \noindent {\bfseries \Lang{Kata Kunci}{Keywords}}: \Lang{\KeywordsID}{\KeywordsEN}
+\fi
 
 \halamanKosong
 
@@ -208,8 +210,10 @@
 \input{chapters/\ThesisLanguage/ch01-introduction}
 \input{chapters/\ThesisLanguage/ch02-literature-review}
 \input{chapters/\ThesisLanguage/ch03-methodology}
+\iffullthesis
 \input{chapters/\ThesisLanguage/ch04-results-discussion}
 \input{chapters/\ThesisLanguage/ch05-conclusion-recommendations}
+\fi
 
 % Back matter: bibliography and appendix appear without BAB/CHAPTER prefix in TOC.
 \clearpage
