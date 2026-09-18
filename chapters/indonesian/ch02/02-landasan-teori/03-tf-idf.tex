@@ -1,0 +1,15 @@
+\subsection{TF-IDF}
+
+TF-IDF (Term Frequency-Inverse Document Frequency) adalah metode pembobotan fitur yang memberikan nilai pada setiap kata berdasarkan seberapa sering kata tersebut muncul dalam suatu dokumen dan seberapa jarang kata tersebut muncul di seluruh dokumen \cite{manning2008}. Bobot TF-IDF dihitung dengan persamaan:
+
+\begin{equation}
+\text{TF-IDF}(t,d) = \text{TF}(t,d) \times \text{IDF}(t)
+\end{equation}
+
+dengan $\text{TF}(t,d)$ adalah frekuensi kemunculan kata $t$ pada dokumen $d$, dan $\text{IDF}(t)$ dihitung sebagai:
+
+\begin{equation}
+\text{IDF}(t) = \log\left(\frac{N}{\text{DF}(t)}\right)
+\end{equation}
+
+di mana $N$ adalah jumlah total dokumen dan $\text{DF}(t)$ adalah jumlah dokumen yang mengandung kata $t$.

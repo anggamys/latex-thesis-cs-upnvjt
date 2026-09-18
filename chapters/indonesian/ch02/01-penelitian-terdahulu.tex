@@ -1,0 +1,22 @@
+\section{Penelitian Terdahulu}
+\TemplateTodo{Ringkas penelitian terdahulu yang paling relevan. Jelaskan tujuan, metode, data, hasil, dan keterbatasannya. Akhiri dengan posisi penelitian Anda dibandingkan karya-karya tersebut.}
+
+Beberapa penelitian telah dilakukan terkait analisis sentimen menggunakan berbagai metode. Tabel~\ref{tab:prior-research} merangkum penelitian terdahulu yang relevan.
+
+\begin{table}[H]
+\centering
+\caption{Ringkasan penelitian terdahulu}
+\label{tab:prior-research}
+\begin{tabularx}{\linewidth}{@{}p{0.15\linewidth}X X X@{}}
+\toprule
+Peneliti & Metode & Data & Akurasi \\
+\midrule
+Go dkk. \cite{go2019} & Na\"ive Bayes & Twitter (1,6 juta data) & 81,3\% \\
+Maas dkk. \cite{maas2011} & Word Vectors + Logistic Regression & IMDB (25.000 data) & 88,9\% \\
+Gede dkk. \cite{gewang2022} & Na\"ive Bayes + TF-IDF & Ulasan Play Store (1.000 data) & 84,5\% \\
+Zhang dkk. \cite{zhang2020} & Deep Learning (LSTM) & Ulasan Amazon (50.000 data) & 91,2\% \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Penelitian-penelitian tersebut menunjukkan bahwa Na\"ive Bayes Classifier memberikan hasil yang kompetitif untuk klasifikasi teks, terutama pada dataset berukuran kecil hingga menengah. Penelitian ini menggunakan pendekatan serupa dengan dataset dan domain yang berbeda, yaitu ulasan aplikasi GoFood berbahasa Indonesia.

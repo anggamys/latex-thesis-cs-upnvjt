@@ -1,0 +1,22 @@
+\section{Prior Research}
+\TemplateTodo{Summarize the most relevant prior research. Explain the objective, method, data, results, and limitations. End with the position of your study relative to these works.}
+
+Several studies have been conducted on sentiment analysis using various methods. Table~\ref{tab:prior-research} summarizes the relevant prior research.
+
+\begin{table}[H]
+\centering
+\caption{Summary of prior research}
+\label{tab:prior-research}
+\begin{tabularx}{\linewidth}{@{}p{0.15\linewidth}X X X@{}}
+\toprule
+Researchers & Method & Data & Accuracy \\
+\midrule
+Go et al. \cite{go2019} & Na\"ive Bayes & Twitter (1.6M data) & 81.3\% \\
+Maas et al. \cite{maas2011} & Word Vectors + Logistic Regression & IMDB (25,000 data) & 88.9\% \\
+Gede et al. \cite{gewang2022} & Na\"ive Bayes + TF-IDF & Play Store Reviews (1,000 data) & 84.5\% \\
+Zhang et al. \cite{zhang2020} & Deep Learning (LSTM) & Amazon Reviews (50,000 data) & 91.2\% \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+These studies show that the Na\"ive Bayes Classifier provides competitive results for text classification, especially on small to medium-sized datasets. This study uses a similar approach with a different dataset and domain, namely Indonesian-language GoFood application reviews.

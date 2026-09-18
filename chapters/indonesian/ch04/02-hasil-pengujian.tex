@@ -1,0 +1,38 @@
+\section{Hasil Pengujian}
+\TemplateTodo{Sajikan hasil utama sesuai skenario pada Bab III. Tabel harus memiliki judul jelas, satuan, dan keterangan yang cukup.}
+
+Tabel~\ref{tab:confusion} menunjukkan \emph{confusion matrix} dari pengujian menggunakan 10-fold cross validation pada metode Na\"ive Bayes Classifier.
+
+\begin{table}[H]
+\centering
+\caption{Confusion matrix hasil pengujian NBC}
+\label{tab:confusion}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+ & \multicolumn{2}{c}{Prediksi} \\
+\cmidrule{2-3}
+Aktual & Positif & Negatif \\
+\midrule
+Positif & 2.132 (TP) & 287 (FN) \\
+Negatif & 398 (FP) & 2.183 (TN) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Tabel~\ref{tab:comparison} menyajikan perbandingan metrik evaluasi antara Na\"ive Bayes Classifier dan Support Vector Machine.
+
+\begin{table}[H]
+\centering
+\caption{Perbandingan performa NBC dan SVM}
+\label{tab:comparison}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Metrik & NBC & SVM \\
+\midrule
+Akurasi & 86,3\% & 82,1\% \\
+Precision & 84,7\% & 80,5\% \\
+Recall & 88,1\% & 83,9\% \\
+F1-Score & 86,4\% & 82,2\% \\
+\bottomrule
+\end{tabular}
+\end{table}

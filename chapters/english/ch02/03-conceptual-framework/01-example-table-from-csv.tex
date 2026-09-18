@@ -1,0 +1,12 @@
+\subsection{Example Table from CSV Data}
+
+The template can display tables populated from CSV files. Store the data in the \texttt{references/} folder and use the \texttt{csvsimple} package.
+
+\begin{table}[H]
+\centering
+\caption{Example table from CSV data}
+\label{tab:csv-example}
+\csvautotabular{references/example.csv}
+\end{table}
+
+Table~\ref{tab:csv-example} shows sample data from the \texttt{references/example.csv} file. Make sure the CSV column count matches the desired layout.

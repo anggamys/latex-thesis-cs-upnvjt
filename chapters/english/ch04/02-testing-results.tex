@@ -1,0 +1,38 @@
+\section{Testing Results}
+\TemplateTodo{Present the main results according to the scenarios in Chapter III. Tables should have clear titles, units, and sufficient descriptions.}
+
+Table~\ref{tab:confusion} shows the confusion matrix from the 10-fold cross validation testing using the Na\"ive Bayes Classifier method.
+
+\begin{table}[H]
+\centering
+\caption{Confusion matrix of NBC testing results}
+\label{tab:confusion}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+ & \multicolumn{2}{c}{Predicted} \\
+\cmidrule{2-3}
+Actual & Positive & Negative \\
+\midrule
+Positive & 2,132 (TP) & 287 (FN) \\
+Negative & 398 (FP) & 2,183 (TN) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:comparison} presents a comparison of evaluation metrics between Na\"ive Bayes Classifier and Support Vector Machine.
+
+\begin{table}[H]
+\centering
+\caption{Performance comparison of NBC and SVM}
+\label{tab:comparison}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Metric & NBC & SVM \\
+\midrule
+Accuracy & 86.3\% & 82.1\% \\
+Precision & 84.7\% & 80.5\% \\
+Recall & 88.1\% & 83.9\% \\
+F1-Score & 86.4\% & 82.2\% \\
+\bottomrule
+\end{tabular}
+\end{table}

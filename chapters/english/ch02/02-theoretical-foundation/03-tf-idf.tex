@@ -1,0 +1,15 @@
+\subsection{TF-IDF}
+
+TF-IDF (Term Frequency-Inverse Document Frequency) is a feature weighting method that assigns a value to each word based on how often it appears in a document and how rarely it appears across all documents \cite{manning2008}. The TF-IDF weight is calculated using the equation:
+
+\begin{equation}
+\text{TF-IDF}(t,d) = \text{TF}(t,d) \times \text{IDF}(t)
+\end{equation}
+
+where $\text{TF}(t,d)$ is the frequency of word $t$ in document $d$, and $\text{IDF}(t)$ is calculated as:
+
+\begin{equation}
+\text{IDF}(t) = \log\left(\frac{N}{\text{DF}(t)}\right)
+\end{equation}
+
+where $N$ is the total number of documents and $\text{DF}(t)$ is the number of documents containing word $t$.

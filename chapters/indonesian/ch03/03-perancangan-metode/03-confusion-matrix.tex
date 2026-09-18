@@ -1,0 +1,19 @@
+\subsection{Confusion Matrix}
+
+Evaluasi performa model dilakukan menggunakan \emph{confusion matrix} yang menghasilkan empat nilai: True Positive (TP), True Negative (TN), False Positive (FP), dan False Negative (FN). Dari nilai tersebut dihitung metrik evaluasi sebagai berikut:
+
+\begin{equation}
+\text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}
+\end{equation}
+
+\begin{equation}
+\text{Precision} = \frac{TP}{TP + FP}
+\end{equation}
+
+\begin{equation}
+\text{Recall} = \frac{TP}{TP + FN}
+\end{equation}
+
+\begin{equation}
+\text{F1-Score} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}
+\end{equation}

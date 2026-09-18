@@ -1,0 +1,16 @@
+\subsection{Algoritma Na\"ive Bayes Classifier}
+
+Algoritma~\ref{alg:nbc} menunjukkan langkah-langkah \emph{training} model Na\"ive Bayes Classifier.
+
+\begin{algorithm}[H]
+\caption{\emph{Training} Na\"ive Bayes Classifier}
+\label{alg:nbc}
+\KwInput{Dataset pelatihan $D = \{(d_1, c_1), (d_2, c_2), \ldots, (d_n, c_n)\}$}
+\KwOutput{Model NBC yang telah terlatih}
+Untuk setiap kelas $c_k$ dalam himpunan kelas $C$\;
+  Hitung probabilitas prior $P(c_k) = \frac{N_{c_k}}{N}$\;
+Untuk setiap kata $w_i$ dalam kosakata $V$\;
+  Untuk setiap kelas $c_k$\;
+    Hitung probabilitas kondisional $P(w_i \mid c_k) = \frac{\text{count}(w_i, c_k) + 1}{\sum_{w \in V} \text{count}(w, c_k) + |V|}$\;
+  \KwReturn{Model dengan parameter $P(c_k)$ dan $P(w_i \mid c_k)$ untuk setiap kelas}
+\end{algorithm}

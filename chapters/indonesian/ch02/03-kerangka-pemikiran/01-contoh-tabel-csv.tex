@@ -1,0 +1,12 @@
+\subsection{Contoh Tabel dari Data CSV}
+
+Template dapat menampilkan tabel yang diisi dari berkas CSV. Simpan data di folder \texttt{references/} dan gunakan paket \texttt{csvsimple}.
+
+\begin{table}[H]
+\centering
+\caption{Contoh tabel dari data CSV}
+\label{tab:csv-example}
+\csvautotabular{references/example.csv}
+\end{table}
+
+Tabel~\ref{tab:csv-example} menampilkan contoh data dari berkas \texttt{references/example.csv}. Pastikan jumlah kolom di CSV sesuai dengan tampilan yang diinginkan.
